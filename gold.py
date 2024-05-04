@@ -16,12 +16,16 @@ from torch.utils.data import DataLoader
 torch.use_deterministic_algorithms(True)
 
 #input dimension
-INPUT_DIM = 24
-DAY_SHIFT = 4
+INPUT_DIM = 24 #DO NOT TOUCH
+DAY_SHIFT = 4 #Set between 1 and 10
+NUM_EPOCH = 150
+HIDDEN_DIM = 200
+LEARNING_RATE = 1e-10
+BATCH_SIZE = 28
 
 class TwoLayerMLP(nn.Module):
     #need to change hidden dim 
-    def __init__(self, hidden_dim=200, dropout_prob=0.0):
+    def __init__(self, hidden_dim=HIDDEN_DIM, dropout_prob=0.0):
         super(TwoLayerMLP, self).__init__()
 
         #create the linear layers
@@ -49,7 +53,7 @@ class TwoLayerMLP(nn.Module):
         #output = self.linear2(postRelu2)
         return output
 
-def train(model, X_train, y_train, X_dev, y_dev, lr=1e-10, batch_size=28, num_epochs=150):
+def train(model, X_train, y_train, X_dev, y_dev, lr=LEARNING_RATE, batch_size=BATCH_SIZE, num_epochs=NUM_EPOCH):
     
     start_time = time.time()
 
